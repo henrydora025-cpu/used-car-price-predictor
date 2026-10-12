@@ -1,0 +1,21 @@
+# cd python && docker compose up --build
+#   FastAPI docs → http://localhost:8000/docs
+#   Streamlit UI → http://localhost:8501
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: python/Dockerfile
+    image: carvalue-ml-python
+    ports:
+      - "8000:8000"
+
+  ui:
+    image: carvalue-ml-python
+    depends_on:
+      - api
+    command: ["streamlit", "run", "app/streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+    environment:
+      API_URL: http://api:8000
+    ports:
+      - "8501:8501"

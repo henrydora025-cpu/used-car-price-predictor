@@ -1,0 +1,114 @@
+{
+  "best_model": "gradient_boosting",
+  "version": "2026.10.12-py",
+  "selection": "lowest mean cross-validated RMSE on the training split",
+  "dataset": {
+    "raw_rows": 12360,
+    "clean_rows": 11746,
+    "train_rows": 9396,
+    "test_rows": 2350
+  },
+  "cleaning": [
+    {
+      "key": "standardize",
+      "step": "Standardize labels & parse values",
+      "rows_before": 12360,
+      "rows_after": 12360,
+      "rows_removed": 0,
+      "values_changed": 0
+    },
+    {
+      "key": "missing_target",
+      "step": "Drop rows missing price or make/model",
+      "rows_before": 12360,
+      "rows_after": 12306,
+      "rows_removed": 54,
+      "values_changed": 0
+    },
+    {
+      "key": "duplicates",
+      "step": "Remove duplicate listings",
+      "rows_before": 12306,
+      "rows_after": 11946,
+      "rows_removed": 360,
+      "values_changed": 0
+    },
+    {
+      "key": "invalid_year",
+      "step": "Drop invalid model years",
+      "rows_before": 11946,
+      "rows_after": 11911,
+      "rows_removed": 35,
+      "values_changed": 0
+    },
+    {
+      "key": "impossible_values",
+      "step": "Nullify impossible values",
+      "rows_before": 11911,
+      "rows_after": 11911,
+      "rows_removed": 0,
+      "values_changed": 26
+    },
+    {
+      "key": "price_bounds",
+      "step": "Remove implausible prices",
+      "rows_before": 11911,
+      "rows_after": 11848,
+      "rows_removed": 63,
+      "values_changed": 0
+    },
+    {
+      "key": "price_outliers",
+      "step": "Remove statistical price outliers",
+      "rows_before": 11848,
+      "rows_after": 11746,
+      "rows_removed": 102,
+      "values_changed": 0
+    }
+  ],
+  "models": {
+    "linear_regression": {
+      "label": "Linear Regression",
+      "cv_rmse_mean": 4226.360662661141,
+      "cv_rmse_std": 323.03160839598036,
+      "cv_mae_mean": 2484.0649572122006,
+      "cv_r2_mean": 0.9014452336248249,
+      "test": {
+        "r2": 0.905728966116184,
+        "mae": 2304.401004250402,
+        "rmse": 3840.349468076128,
+        "mape": 0.1318506722171613
+      },
+      "seconds": 0.41
+    },
+    "random_forest": {
+      "label": "Random Forest",
+      "cv_rmse_mean": 4170.815466218375,
+      "cv_rmse_std": 597.4498344503943,
+      "cv_mae_mean": 2461.6528235619126,
+      "cv_r2_mean": 0.9035808518727929,
+      "test": {
+        "r2": 0.9130974485389505,
+        "mae": 2231.556458020192,
+        "rmse": 3687.2100196272386,
+        "mape": 0.12583647854136296
+      },
+      "seconds": 5.11
+    },
+    "gradient_boosting": {
+      "label": "Gradient Boosting",
+      "cv_rmse_mean": 3371.678037578428,
+      "cv_rmse_std": 342.346484029401,
+      "cv_mae_mean": 2057.51320157245,
+      "cv_r2_mean": 0.9371407796043769,
+      "test": {
+        "r2": 0.943004970146724,
+        "mae": 1859.5723377415245,
+        "rmse": 2986.070824538401,
+        "mape": 0.09993345234548588
+      },
+      "seconds": 6.23
+    }
+  },
+  "seconds": 12.1
+}

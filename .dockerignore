@@ -1,0 +1,9 @@
+node_modules
+.next
+.git
+.github
+coverage
+python/.venv
+python/**/__pycache__
+python/.pytest_cache
+*.log

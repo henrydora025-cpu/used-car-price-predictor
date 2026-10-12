@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-feature-settings: "cv11", "ss01";
+}
+
+/* Hide the default disclosure triangle of <details>/<summary> in WebKit */
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Recharts: remove focus outline on click */
+.recharts-wrapper:focus,
+.recharts-surface:focus {
+  outline: none;
+}

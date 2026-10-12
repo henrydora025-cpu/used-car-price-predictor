@@ -1,0 +1,113 @@
+{
+  "version": "2026.10.12-605e62e",
+  "trained_at": "2026-10-12T10:14:52.964Z",
+  "best_model": "gradient_boosting",
+  "selection": "Lowest mean RMSE (USD) across 5-fold cross-validation on the training split; the test split is only used for the final report.",
+  "dataset": {
+    "source": "data/raw/used_cars.csv",
+    "rawRows": 12360,
+    "cleanRows": 11746,
+    "trainRows": 9397,
+    "testRows": 2349,
+    "yearRange": [
+      2004,
+      2026
+    ],
+    "priceRange": [
+      580,
+      148350
+    ],
+    "medianPrice": 17250,
+    "manufacturers": 20,
+    "models": 123
+  },
+  "models": {
+    "linear_regression": {
+      "cv_rmse_mean": 4485,
+      "cv_rmse_std": 303,
+      "cv_r2_mean": 0.8861,
+      "test_r2": 0.8745,
+      "test_mae": 2736,
+      "test_rmse": 4691,
+      "test_mape": 0.1473,
+      "test_median_ae": 1583,
+      "interval_coverage_80": 0.798,
+      "train_seconds": 0.02
+    },
+    "random_forest": {
+      "cv_rmse_mean": 3716,
+      "cv_rmse_std": 297,
+      "cv_r2_mean": 0.9218,
+      "test_r2": 0.9183,
+      "test_mae": 2273,
+      "test_rmse": 3786,
+      "test_mape": 0.1186,
+      "test_median_ae": 1393,
+      "interval_coverage_80": 0.795,
+      "train_seconds": 0.23
+    },
+    "gradient_boosting": {
+      "cv_rmse_mean": 2754,
+      "cv_rmse_std": 148,
+      "cv_r2_mean": 0.9571,
+      "test_r2": 0.9559,
+      "test_mae": 1742,
+      "test_rmse": 2781,
+      "test_mape": 0.0903,
+      "test_median_ae": 1077,
+      "interval_coverage_80": 0.797,
+      "train_seconds": 1.11
+    }
+  },
+  "cleaning": [
+    {
+      "step": "Standardize labels & parse values",
+      "rows_before": 12360,
+      "rows_after": 12360,
+      "rows_removed": 0,
+      "values_changed": 12760
+    },
+    {
+      "step": "Drop rows missing price or make/model",
+      "rows_before": 12360,
+      "rows_after": 12306,
+      "rows_removed": 54,
+      "values_changed": 0
+    },
+    {
+      "step": "Remove duplicate listings",
+      "rows_before": 12306,
+      "rows_after": 11946,
+      "rows_removed": 360,
+      "values_changed": 0
+    },
+    {
+      "step": "Drop invalid model years",
+      "rows_before": 11946,
+      "rows_after": 11911,
+      "rows_removed": 35,
+      "values_changed": 0
+    },
+    {
+      "step": "Nullify impossible values",
+      "rows_before": 11911,
+      "rows_after": 11911,
+      "rows_removed": 0,
+      "values_changed": 26
+    },
+    {
+      "step": "Remove implausible prices",
+      "rows_before": 11911,
+      "rows_after": 11848,
+      "rows_removed": 63,
+      "values_changed": 0
+    },
+    {
+      "step": "Remove statistical price outliers",
+      "rows_before": 11848,
+      "rows_after": 11746,
+      "rows_removed": 102,
+      "values_changed": 0
+    }
+  ]
+}
